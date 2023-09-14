@@ -5,25 +5,10 @@
 	const featureCards = [
 		{
 			id: 0,
-			title: 'All you need is Images',
+			title: 'Push Notifications from Smart Contracts',
 			subitile:
-				'Just upload your images and enter your addresses and the NFTs are delivered in real-time'
+				'On chain contracts can send notifications and data'
 		},
-		{
-			id: 1,
-			title: "It's Cheap",
-			subitile: "It's so cheap to mint 1000 cNFTs that your gas elsewhere will seem expensive"
-		},
-		{
-			id: 2,
-			title: 'Anayltics',
-			subitile: 'rooster offers powerful analytics to analyze your mints and their usage, access'
-		},
-		{
-			id: 3,
-			title: 'Powered by Underdog',
-			subitile: "rooster is powered by Underdog's state of the art cNFT services"
-		}
 	];
 </script>
 

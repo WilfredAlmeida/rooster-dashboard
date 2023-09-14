@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 		)
 		.eq('user_id', userIdInDb);
 
-	if (projectData!.length === 0) {
+	if (!projectData || projectData!.length === 0) {
 		return { projects: [] };
 	}
 
