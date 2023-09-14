@@ -1,6 +1,5 @@
 // src/hooks.server.ts
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
-import { bypassAuthRoutes } from '$lib/utils';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
 
@@ -26,14 +25,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (event.url.pathname.startsWith('/(private)')) {
 		const session = await event.locals.getSession();
-		// console.log("SESSION in hooks");
-		// console.log(session);
-
-		if(bypassAuthRoutes.includes(event.url.pathname.split("/")[3])){
-			console.log("BYPASS AUTH ROUTE IN HOOKS");
-			return {};
-		}
-
 
 		if (!session) {
 			// the user is not signed in

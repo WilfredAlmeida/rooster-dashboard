@@ -4,9 +4,6 @@ import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
 
 
-export const bypassAuthRoutes = ["view"]
-export const bypassLeftPaneRoutes = ["view"]
-
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }

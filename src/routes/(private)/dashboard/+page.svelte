@@ -84,24 +84,16 @@
 									<div class="grid w-full items-center gap-4 text-white">
 										<div class="flex flex-col space-y-1.5">
 											<Label for="name">Name <span class="text-red-400">*</span></Label>
-											<Input id="name" name="projectName" placeholder="Name of your project" />
+											<Input id="name" type="text" name="projectName" placeholder="Name of your project" />
 										</div>
 										<div class="flex flex-col space-y-1.5">
-											<Label for="description">Description</Label>
+											<Label for="serviceRole">Service Role JSON <span class="text-red-400">*</span>
+											<span class="italic text-gray-100 underline"><a href="https://firebase.google.com/docs/projects/iam/permissions#required_firebase_service" target="_blank">Read more here</a></span></Label>
 											<Input
-												id="description"
-												name="projectDescription"
-												placeholder="One-liner Description"
-											/>
-										</div>
-										<div class="flex flex-col space-y-1.5">
-											<Label for="image">Image <span class="text-red-400">*</span></Label>
-											<Input
-												id="image"
-												type="file"
-												name="projectImage"
-												class="cursor-pointer"
-												on:change={fileValidation}
+												id="serviceRole"
+												name="serviceRoleInput"
+												placeholder="Service Role JSON"
+												class="h-80"
 											/>
 										</div>
 									</div>
