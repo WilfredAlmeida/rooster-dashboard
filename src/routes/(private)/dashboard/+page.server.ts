@@ -1,13 +1,15 @@
 import { error, fail, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import { generateAlphanumericString } from "$lib/utils"
+import { goto } from '$app/navigation';
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async ({ locals, url }) => {
 	const { supabase } = locals;
 	const session = await locals.getSession();
 
-	if(!session) throw redirect(303, "/login")
-	
-	const {user: { email }} = await locals.getSession();
+	if (!session) throw redirect(303, "/login")
+
+	const { user: { email } } = await locals.getSession();
 
 	const { data: userData } = await supabase.from('users').select('id').eq('email', email);
 
@@ -34,41 +36,53 @@ export const load: PageServerLoad = async ({ locals }) => {
 		return { projects: [] };
 	}
 
-	// console.log(projectData);
-
 	return { projects: projectData!.reverse() };
 };
 
 export const actions = {
-	createProject: async ({ request, locals, fetch }) => {
-		// const {supabase} = locals;
+	createProject: async ({ request, locals, url, }) => {
+		const { supabase } = locals;
+		const session = await locals.getSession()
 		console.log('IN ACTION');
-
-		const allowedExtensions = /(\jpg|\jpeg)$/i;
 
 		const formData = await request.formData();
 
 		const name = formData.get('projectName')?.toString();
-		const description = formData.get('projectDescription')?.toString();
-		const imageFile = formData.get('projectImage') as Blob;
+		const serviceRoleJson = formData.get('serviceRoleInput')?.toString();
 
-		if (!name || name.length === 0 || !imageFile || !allowedExtensions.exec(imageFile.type)) {
-			return fail(400, { message: 'Name, Image are required' });
+		if (!name || name.length === 0 || !serviceRoleJson || serviceRoleJson.length === 0) {
+			return fail(400, { message: 'Name, Service Role are required' });
 		}
 
-		const fd = new FormData();
-		fd.append('image', imageFile);
-		fd.append('name', name);
-		/* @ts-ignore */
-		fd.append('description', description?.trim().length === 0 ? null : description?.trim());
+		const projectId = generateAlphanumericString(6);
 
-		const res = await fetch('/api/project', {
-			method: 'POST',
-			body: fd
-		});
+		const {
+			/* @ts-ignore */
+			user: { email }
+		} = session;
+
+		const dbRes2 = await supabase.from("users").select("id").eq("email", email);
+
+		const userId = dbRes2.data![0].id
+
+		const dbRes = await supabase.from("projects").insert({
+			id: projectId,
+			name: name,
+			user_id: userId,
+			service_role_json: JSON.stringify(serviceRoleJson)
+		})
 
 		console.log('RESPONSE');
+		console.log(JSON.stringify(dbRes));
 
-		console.log(await res.json());
+		if (dbRes.error || dbRes.status!=201) {
+			console.log(console.log(JSON.stringify(dbRes)));
+			return fail(400, { message: 'Something went wrong' });
+		}
+
+		console.log("PROJECT CREATED");
+
+		throw redirect(301,`${url.origin}/project/${projectId}`);
+
 	}
 };

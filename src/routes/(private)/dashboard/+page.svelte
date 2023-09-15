@@ -89,12 +89,14 @@
 										<div class="flex flex-col space-y-1.5">
 											<Label for="serviceRole">Service Role JSON <span class="text-red-400">*</span>
 											<span class="italic text-gray-100 underline"><a href="https://firebase.google.com/docs/projects/iam/permissions#required_firebase_service" target="_blank">Read more here</a></span></Label>
-											<Input
+											<!-- <Input
 												id="serviceRole"
 												name="serviceRoleInput"
 												placeholder="Service Role JSON"
 												class="h-80"
-											/>
+											/> -->
+
+											<textarea class="bg-transparent border-2 rounded-lg border-white" placeholder="Service Role JSON" name="serviceRoleInput" id="serviceRole" cols="30" rows="10"/>
 										</div>
 									</div>
 									<div class="flex flex-row pt-12 justify-between">

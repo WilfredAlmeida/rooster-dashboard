@@ -1,41 +1,77 @@
 <script lang="ts">
+	import Button from '$components/ui/button/button.svelte';
+	import Input from '$components/ui/input/input.svelte';
 	import * as Card from '$lib/components/ui/card';
-    import { Label } from "$lib/components/ui/label";
+	import { Label } from '$lib/components/ui/label';
 	export let data;
 
+	const supabase = data.supabase;
+
+	let topics: string[] = data.project.topics || [];
+	let newTopic = '';
+
+	const addTopic = async () => {
+		if (newTopic.trim() === '') {
+			// topics = [...topics, newTopic];
+			newTopic = ''; // Clear the input field
+			return;
+		}
+
+		if (!topics.includes(newTopic.trim())) {
+			console.log('Hi');
+
+			topics = [newTopic, ...topics];
+
+			const dbRes = await supabase
+				.from('projects')
+				.update({
+					topics: topics
+				})
+				.eq('id', data.project.id);
+
+			if (dbRes.error) {
+				console.log(dbRes.error);
+				return;
+			}
+			console.log(dbRes);
+		}
+	};
 </script>
 
 <div class="ml-12 text-white">
-<Label class="font-bold text-6xl">{data.project.projectName}</Label>
-{#if data.project.projectDescription === "null"}
-<h4 class="text-gray-400 italic">No description provided</h4>
-{:else}
-<h4 class="text-green-400">{data.project.description}</h4>
-{/if}
+	<Label class="font-bold text-6xl">{data.project.name}</Label>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-10 ml-20">
-	<Card.Root
-		class="w-50 h-50 bg-opacity-20 backdrop-blur-lg bg-green-400 border border-green-400 rounded-lg"
-	>
-		<Card.Header>
-			<Card.Title class="text-sm font-medium text-center text-white">Total Mints</Card.Title>
-		</Card.Header>
-		<Card.Content>
-			<div class="text-2xl font-bold text-center text-white">{data.project.mintCount}</div>
-			<p class="text-xs text-center text-green-400 pt-5">Hmmm so less, mint some more</p>
-		</Card.Content>
-	</Card.Root>
+<div class="flex-col items-start justify-start p-6">
+	<div class="border border-green-400 w-1/4 p-8">
+		<h2 class="text-2xl font-semibold text-white mb-4">Create a List of Topics</h2>
 
-	<Card.Root
-		class="w-50 h-50 bg-opacity-20 backdrop-blur-lg bg-green-400 border border-green-400 rounded-lg"
-	>
-		<Card.Header>
-			<Card.Title class="text-sm font-medium text-center text-white">Analytics</Card.Title>
-		</Card.Header>
-		<Card.Content>
-			<div class="text-2xl font-bold text-center text-white">Available per Mint</div>
-			<p class="text-xs text-center text-green-400 pt-5">Click on mint in history</p>
-		</Card.Content>
-	</Card.Root>
+		<div class="flex mb-4">
+			<Input
+				class="w-120 placeholder:text-white border-gray-300 text-white rounded-l-md py-2 px-4"
+				type="text"
+				placeholder="Enter a topic"
+				bind:value={newTopic}
+			/>
+
+			<Button variant="ghost" class="border border-white text-green-400" on:click={addTopic}
+				>Add</Button
+			>
+		</div>
+
+		<!-- Display List of Topics -->
+		<div class="w-64">
+			<ul>
+				{#each topics as topic (topic)}
+					<div class="border border-white">
+						<li class="text-white w-120 mb-2 p-2 rounded">
+							{topic}
+						</li>
+					</div>
+				{/each}
+			</ul>
+		</div>
+	</div>
 </div>
+
+<div />
