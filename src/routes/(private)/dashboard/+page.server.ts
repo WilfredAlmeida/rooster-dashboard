@@ -20,16 +20,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 
 	const { data: projectData } = await supabase
 		.from('projects')
-		.select(
-			`
-        projectId:id,
-        projectName:name,
-        imageUrl:image_url,
-        projectDescription:description,
-        mintCount:mint_count,
-        createdAt:created_at
-    `
-		)
+		.select(`*`)
 		.eq('user_id', userIdInDb);
 
 	if (!projectData || projectData!.length === 0) {

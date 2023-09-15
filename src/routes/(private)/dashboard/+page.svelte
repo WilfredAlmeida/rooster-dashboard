@@ -159,26 +159,17 @@
 	{/if}
 
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-10">
-		{#each data.projects as project (project.projectId)}
+		{#each data.projects as project (project.id)}
 			<a
-				href="/project/{project.projectId}"
+				href="/project/{project.id}"
 				class="relative block max-w-sm p-6 h-40 rounded-lg hover:opacity-80 hover:shadow-lg"
 			>
 				<div
 					class="p-6 absolute inset-0 bg-opacity-20 backdrop-blur-lg bg-green-400 border border-green-400 rounded-lg"
 				>
 					<h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
-						{project.projectName}
+						{project.name}
 					</h5>
-					{#if project.projectDescription === 'null'}
-						<p class="pt-5 font-normal text-gray-400 italic dark:text-gray-400">
-							No description provided
-						</p>
-					{:else}
-						<p class="pt-5 font-normal text-white dark:text-gray-400">
-							{project.projectDescription}
-						</p>
-					{/if}
 				</div>
 			</a>
 		{/each}
