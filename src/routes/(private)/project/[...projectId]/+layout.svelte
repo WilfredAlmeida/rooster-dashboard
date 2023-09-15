@@ -19,15 +19,9 @@
 		{
 			itemId: 1,
 			icon: Send,
-			hoverText: 'Mint',
-			action: `${$page.url.origin}/project/${project.projectId}/mint`
+			hoverText: 'Notifications',
+			action: `${$page.url.origin}/project/${project.projectId}/notifications`
 		},
-		{
-			itemId: 2,
-			icon: History,
-			hoverText: 'Mint History',
-			action: `${$page.url.origin}/project/${project.projectId}/history`
-		}
 	];
 </script>
 
