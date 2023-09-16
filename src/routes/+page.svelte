@@ -27,8 +27,8 @@
 		<div class="w-40 h-40 text-center items-center justify-center flex">
 			<img src="/um.png" />
 		</div>
-		<h1 class="text-4xl font-bold">Welcome to rooster</h1>
-		<p class="mt-4 text-lg text-green-400">The MailChimp of Solana with cNFTs</p>
+		<h1 class="text-4xl font-bold">Welcome to Rooster</h1>
+		<p class="mt-4 text-lg text-green-400">Push Notifications from Smart Contracts</p>
 	</div>
 </div>
 
@@ -51,8 +51,8 @@
 
 <section class="py-16 text-white">
 	<div class="container mx-auto text-center">
-		<h2 class="text-2xl font-semibold">Ready to get started with rooster?</h2>
-		<p class="mt-4 text-lg text-green-400">Join us today and powerup using cNFTs!</p>
+		<h2 class="text-2xl font-semibold">Ready to get started with Rooster?</h2>
+		<p class="mt-4 text-lg text-green-400">Join us today</p>
 		<Button
 			variant="ghost"
 			class="rounded-full font-semibold border border-green-400 hover:bg-green-400 text-green-400 hover:text-black py-2 px-6 mt-8"
@@ -63,6 +63,6 @@
 
 <footer class=" py-6">
 	<div class="container mx-auto text-center text-green-400">
-		<p>&copy; 2023 rooster. All rights reserved.</p>
+		<p>&copy; 2023 Rooster. All rights reserved.</p>
 	</div>
 </footer>

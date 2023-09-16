@@ -26,7 +26,7 @@
 		<a href="/" class="flex items-center">
 			<img src="/um.png" class="h-12 mr-3" alt="rooster Logo" />
 			<span class="self-center text-2xl font-semibold whitespace-nowrap text-green-400 dark:text-green-400"
-				>rooster</span
+				>Rooster</span
 			>
 		</a>
 

@@ -43,19 +43,19 @@
 	>
 		<!-- Left Side -->
 		<div class="flex flex-col justify-center">
-			<h1 class="text-3xl font-semibold text-white mb-4">rooster</h1>
+			<h1 class="text-3xl font-semibold text-white mb-4">Rooster</h1>
 			<ul class="text-white space-y-2">
 				<li>
 					<span class="text-green-400 mr-2">&#9679;</span>
-					MailChimp with cNFTs
+					Push Notifications form Smart Contracts
 				</li>
 				<li>
 					<span class="text-green-400 mr-2">&#9679;</span>
-					Bulk Mint and Track your cNFTs
+					From chain to your mobile devices
 				</li>
 				<li>
 					<span class="text-green-400 mr-2">&#9679;</span>
-					Powered by Underdog
+					Open for alpha
 				</li>
 			</ul>
 		</div>
