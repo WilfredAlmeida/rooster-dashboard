@@ -14,13 +14,13 @@
 			itemId: 0,
 			icon: Home,
 			hoverText: 'Project Home',
-			action: `${$page.url.origin}/project/${project.projectId}`
+			action: `${$page.url.origin}/project/${project.id}`
 		},
 		{
 			itemId: 1,
 			icon: Send,
 			hoverText: 'Notifications',
-			action: `${$page.url.origin}/project/${project.projectId}/notifications`
+			action: `${$page.url.origin}/project/${project.id}/notifications`
 		},
 	];
 </script>
