@@ -1,16 +1,14 @@
-```
-URL {
-  href: 'http://localhost:5173/dashboard',
-  origin: 'http://localhost:5173',
-  protocol: 'http:',
-  username: '',
-  password: '',
-  host: 'localhost:5173',
-  hostname: 'localhost',
-  port: '5173',
-  pathname: '/dashboard',
-  search: '',
-  searchParams: URLSearchParams {},
-  hash: ''
-}
-```
+# Rooster Dashboard
+
+This repo houses the dashboard for Rooster.
+
+Using the dashboard users can:
+- Signup for notifications
+- Create projects
+- Provide Firebase configuration
+- Monitor notifications in realtime
+
+### Tech Used:
+- SvelteKit - UI
+- Supabase - Database, Authentication
+- Firebase Cloud Messaging - Notifications
